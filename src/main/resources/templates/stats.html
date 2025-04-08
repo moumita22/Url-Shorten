@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>URL Stats</title>
+</head>
+<body>
+<h2>Analytics for Short URL</h2>
+<p><strong>Original URL:</strong> <span th:text="${url.originalUrl}"></span></p>
+<p><strong>Clicks:</strong> <span th:text="${url.clickCount}"></span></p>
+<p><strong>Expires At:</strong> <span th:text="${url.expiryAt}"></span></p>
+</body>
+</html>
