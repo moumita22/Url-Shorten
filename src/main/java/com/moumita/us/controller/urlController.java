@@ -42,11 +42,21 @@ public class urlController {
 	 @GetMapping("/{shortCode}")
 	 public RedirectView redirectToLongUrl(@PathVariable String shortCode) {
 		 RedirectView rview =  new RedirectView();
+		 
+		 if(url.isExpired(shortCode)) {
+			 rview.setUrl("/expired"); 
+		     return rview;
+		 }
 		 String orgUrl = url.getUrl(shortCode);
 		 url.getCount(shortCode);
 		 rview.setUrl(orgUrl);
 		 return rview;
 	 }
+	 
+	 @GetMapping("/expired")
+	    public String expiryPage(Model model) {
+	        return "expired"; 
+	    }
 	 
 //	 @GetMapping("/{shortCode}/stats")
 //	 public String showStats(@PathVariable String shortCode, Model model) {

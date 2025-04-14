@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.Data;
 
-//@Data
+//@Data//for lombok
 @Entity
 @Table(name = "tbl_short_url")
 public class ShortUrl {

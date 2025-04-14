@@ -44,10 +44,7 @@ public class GenerateUrl {
 	}
 	public String getUrl(String shortCode) {
 		String orgUrl = repo.findByShortCode(shortCode);
-		System.out.println(orgUrl);
-		//getCount(shortCode);
 		return orgUrl;
-		//return "https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa/2.1.2.RELEASE";
 	}
 	public void getCount(String shortCode) {
 		long count = repo.findClickCount(shortCode);
@@ -59,6 +56,14 @@ public class GenerateUrl {
 		long count = surl.getClickCount()+1;
 		repo.updateCount(count, shortCode);
 		System.out.println(count);
+	}
+	public boolean isExpired(String shortCode) {
+		LocalDateTime expiry = repo.findexpiryAt(shortCode);
+		surl.setExpiryAt(expiry);
+		if (surl.getExpiryAt() != null && surl.getExpiryAt().isAfter(LocalDateTime.now())) {
+			return false;
+		}
+		return true;
 	}
 	
 }
